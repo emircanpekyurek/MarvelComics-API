@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="description"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        isVisible='@{description != null &amp;&amp; description != ""}'
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/material_vertical_list_padding">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvInfoRowTitle"
+            style="@style/MaterialVerticalListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:textSize="@dimen/material_vertical_list_title_font_size"
+            tools:text="Name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvInfoRowDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:text="@{description}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/material_vertical_list_subtitle_font_size"
+            tools:text="Abyys" />
+
+    </LinearLayout>
+</layout>

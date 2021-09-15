@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pekyurek.marvelcomics.ui.character.detail.CharacterDetailViewModel" />
+
+        <variable
+            name="character"
+            type="com.pekyurek.marvelcomics.domain.model.character.Character" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCharacterIcon"
+            loadImageFromUrl="@{character.thumbnail.url}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:transitionName="@{character.imageTransitionId}"
+            app:layout_constraintDimensionRatio="1.1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivCharacterIcon">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    layout="@layout/view_info_row"
+                    app:description="@{character.name}"
+                    app:title="@{@string/label_name}" />
+
+                <include
+                    layout="@layout/view_info_row"
+                    app:description="@{character.description}"
+                    app:title="@{@string/label_description}" />
+
+                <include
+                    isVisible='@{viewModel.comicsText != null &amp;&amp; viewModel.comicsText != ""}'
+                    layout="@layout/view_info_row"
+                    app:description="@{viewModel.comicsText}"
+                    app:title="@{@string/label_comics}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
